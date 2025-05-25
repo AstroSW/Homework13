@@ -7,12 +7,11 @@ public class EmployeeBook {
     }
 
     // Добавить нового сотрудника
-    public void addEmployee (String fullName, int dept, double salary) {
+    public void addEmployee (Employee newEmployee) {
         if (size >= employees.length) {
             System.out.println("Увы, набран полный штат сотрудников");
             return;
         }
-        Employee newEmployee = new Employee(fullName, dept, salary);
         employees [size++] = newEmployee;
     }
 
@@ -32,13 +31,13 @@ public class EmployeeBook {
     }
 
     // Поиск сотрудника по id
-    public Object findEmployeeId (int id) {
+    public Employee findEmployeeId (int id) {
         for (int i = 0; i < size; i++) {
             if (employees[i].getId() == id) {
                 return employees[i];
             }
         }
-        return "Сотрудник не найден";
+        return null;
     }
 
     // Список всех сотрудников
@@ -61,7 +60,7 @@ public class EmployeeBook {
     }
 
     // min ЗП
-    public Object findMinSalary () {
+    public Employee findMinSalary () {
         Employee e = employees[0];
         for (int i = 1; i < size; i++) {
             if (employees[i].getSalary() < e.getSalary()) {
@@ -72,7 +71,7 @@ public class EmployeeBook {
     }
 
     //max ЗП
-    public Object findMaxSalary () {
+    public Employee findMaxSalary () {
         Employee e = employees [0];
         for (int i = 1; i < size; i++) {
             if (employees[i].getSalary() > e.getSalary()) {
@@ -109,7 +108,7 @@ public class EmployeeBook {
     }
 
     // min ЗП по отделу
-    public Object findMinSalaryDept (int dept) {
+    public Employee findMinSalaryDept (int dept) {
         Employee e = null;
         int i = 0;
         for (; i < size; i++) {
@@ -127,7 +126,7 @@ public class EmployeeBook {
     }
 
     //max ЗП по отделу
-    public Object findMaxSalaryDept (int dept) {
+    public Employee findMaxSalaryDept (int dept) {
         Employee e = null;
         int i = 0;
         for (; i < size; i++) {
@@ -214,12 +213,6 @@ public class EmployeeBook {
             if (e.getSalary() >= salary) {
                 System.out.println(e);
             }
-        }
-    }
-
-    public void All () {
-        for (Employee e: employees) {
-            System.out.println(e);
         }
     }
 }
